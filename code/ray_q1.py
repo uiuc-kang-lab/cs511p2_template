@@ -7,7 +7,6 @@
 """
 import pandas as pd
 import ray
-import pytest
 import typing
 import numpy as np
 

@@ -9,7 +9,6 @@ import tempfile
 
 import pandas as pd
 import ray
-import pytest
 import typing
 
 import util.judge_df_equal
