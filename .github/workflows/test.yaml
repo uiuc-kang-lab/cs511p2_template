@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 
-  workflow_dispatch:  # Allow manual workflow runs
+  workflow_dispatch:  # Allow manual workflows runs
     inputs:
       test_py_parameters:
         description: 'Parameters to pass to python test.py (optional)'
