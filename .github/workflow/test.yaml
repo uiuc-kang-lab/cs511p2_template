@@ -1,0 +1,51 @@
+name: automatic grader
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:  # Allow manual workflow runs
+    inputs:
+      test_py_parameters:
+        description: 'Parameters to pass to python test.py (optional)'
+        required: false
+        default: ''
+      correct_results:
+        description: 'url to download correct results'
+        required: false
+        default: 'https://drive.google.com/drive/u/1/folders/1Ifzef7-EVV36zQ1rpomYnoOT6_FVbwhs'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.8", "3.9", "3.10" ]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Check out your repository's code
+
+    - name: Set up Python
+      uses: actions/setup-python@v2  # Set up Python environment
+      with:
+        python-version: ${{ matrix.python-version }}  # Choose your desired Python version, e.g., 3.8
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # If you have a requirements.txt file
+
+    - name: download the data
+      run:  |
+        mkdir tables
+        cd tables 
+        gdown https://drive.google.com/drive/u/1/folders/1lv7mrcgPWYeSOu6i1Ek9uKiGE9-WuAgL -O . --folder
+        cd ..
+        mkdir correct_results
+        cd correct_results
+        gdown ${{github.event.inputs.correct_results}} -O . --folder
+
+    - name: run the grader using test.py
+      run: python test.py ${{ github.event.inputs.test_py_parameters }}
