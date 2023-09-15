@@ -4,14 +4,14 @@ import pandas as pd
 import argparse
 import logging
 import util.judge_df_equal
-from code.pandas_q1 import pandas_q1
-from code.pandas_q2 import pandas_q2
-from code.pandas_q3 import pandas_q3
-from code.pandas_q4 import pandas_q4
-from code.ray_q1 import ray_q1
-from code.ray_q2 import ray_q2
-from code.ray_q3 import ray_q3
-from code.ray_q4 import ray_q4
+from codes.pandas_q1 import pandas_q1
+from codes.pandas_q2 import pandas_q2
+from codes.pandas_q3 import pandas_q3
+from codes.pandas_q4 import pandas_q4
+from codes.ray_q1 import ray_q1
+from codes.ray_q2 import ray_q2
+from codes.ray_q3 import ray_q3
+from codes.ray_q4 import ray_q4
 logger = logging.getLogger()
 
 # *****************************************define the parameters****************************
@@ -29,7 +29,6 @@ parser.add_argument('--r4', type=str, default="1993-7-01", help='parameter for r
 
 parser.add_argument('--pq1a', type=float, default=123141078.2283, help='correct answer for pandas q1')
 parser.add_argument('--rq1a', type=float, default=123141078.2283, help='correct answer for ray q1')
-parser.add_argument('--cr', type=str, default='./correct_results', help='path for correct result directory')
 # **************************************************************************************************
 
 
@@ -80,7 +79,7 @@ try:
     with tempfile.NamedTemporaryFile(mode='w') as f:
         result.to_csv(f.name, float_format='%.3f', index=False)
         result = pd.read_csv(f.name)
-        correct_result = pd.read_csv(args.cr + "/pandas_q2.csv")
+        correct_result = pd.read_csv("./correct_results" + "/pandas_q2.csv")
     assert util.judge_df_equal.judge_df_equal(result, correct_result)
     print("*******************pass pandas q2**********************")
     score += 10
@@ -96,7 +95,7 @@ try:
     with tempfile.NamedTemporaryFile(mode='w') as f:
         result.to_csv(f.name, float_format='%.3f', index=False)
         result = pd.read_csv(f.name)
-        correct_result = pd.read_csv(args.cr + "/pandas_q3.csv")
+        correct_result = pd.read_csv("./correct_results" + "/pandas_q3.csv")
     assert util.judge_df_equal.judge_df_equal(result, correct_result)
     print("*******************pass pandas q3**********************")
     score += 10
@@ -112,7 +111,7 @@ try:
     with tempfile.NamedTemporaryFile(mode='w') as f:
         result.to_csv(f.name, float_format='%.3f', index=False)
         result = pd.read_csv(f.name)
-        correct_result = pd.read_csv(args.cr + "/pandas_q4.csv")
+        correct_result = pd.read_csv("./correct_results" + "/pandas_q4.csv")
     assert util.judge_df_equal.judge_df_equal(result, correct_result)
     print("*******************pass pandas q4**********************")
     score += 10
@@ -140,7 +139,7 @@ try:
     with tempfile.NamedTemporaryFile(mode='w') as f:
         result.to_csv(f.name, float_format='%.3f', index=False)
         result = pd.read_csv(f.name)
-        correct_result = pd.read_csv(args.cr + "/ray_q2.csv")
+        correct_result = pd.read_csv("./correct_results" + "/ray_q2.csv")
     assert util.judge_df_equal.judge_df_equal(result, correct_result)
     print("*******************pass ray q2**********************")
     score += 15
@@ -156,7 +155,7 @@ try:
     with tempfile.NamedTemporaryFile(mode='w') as f:
         result.to_csv(f.name, float_format='%.3f', index=False)
         result = pd.read_csv(f.name)
-        correct_result = pd.read_csv(args.cr + "/ray_q3.csv")
+        correct_result = pd.read_csv("./correct_results" + "/ray_q3.csv")
     assert util.judge_df_equal.judge_df_equal(result, correct_result)
     print("*******************pass ray q3**********************")
     score += 15
@@ -172,7 +171,7 @@ try:
     with tempfile.NamedTemporaryFile(mode='w') as f:
         result.to_csv(f.name, float_format='%.3f', index=False)
         result = pd.read_csv(f.name)
-        correct_result = pd.read_csv(args.cr + "/ray_q4.csv")
+        correct_result = pd.read_csv("./correct_results" + "/ray_q4.csv")
     assert util.judge_df_equal.judge_df_equal(result, correct_result)
     print("*******************pass ray q4**********************")
     score += 15

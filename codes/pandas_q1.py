@@ -2,7 +2,7 @@
  	 Author: University of Illinois at Urbana Champaign
  	 Date: 2023-09-10 20:19:47
  	 LastEditTime: 2023-09-11 10:37:24
- 	 FilePath: /code/pandas_q1.py
+ 	 FilePath: /codes/pandas_q1.py
  	 Description: 
 """
 import pandas as pd
@@ -11,9 +11,9 @@ import typing
 
 
 def pandas_q1(time: str, lineitem:pd.DataFrame) -> float:
-    # TODO: your code begin
+    # TODO: your codes begin
     return -1
-    # end of your code
+    # end of your codes
 
 
 
