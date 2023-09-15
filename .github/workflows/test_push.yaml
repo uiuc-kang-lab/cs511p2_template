@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2  # Check out your repository's code
+    - name: Checkout codes
+      uses: actions/checkout@v2  # Check out your repository's codes
 
     - name: Set up Python
       uses: actions/setup-python@v2  # Set up Python environment
@@ -27,13 +27,10 @@ jobs:
 
     - name: download the data
       run:  |
-        mkdir tables
-        cd tables 
-        gdown https://drive.google.com/drive/u/1/folders/1lv7mrcgPWYeSOu6i1Ek9uKiGE9-WuAgL -O . --folder
-        cd ..
-        mkdir correct_results
-        cd correct_results
-        gdown https://drive.google.com/drive/u/1/folders/1Ifzef7-EVV36zQ1rpomYnoOT6_FVbwhs -O . --folder
+        gdown https://drive.google.com/drive/u/1/folders/1SfJhSPCvUfHI2Vc_toVZIIzz1_50LpOx -O . --folder
+        gdown https://drive.google.com/drive/u/1/folders/10Rx3yLCJ5VTXuqJe_2ZuKzRiDSzlV3A0 -O . --folder
+        unzip tables.zip
+        unzip correct_results.zip
 
     - name: run the grader using test.py
       run: python test.py
