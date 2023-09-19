@@ -16,7 +16,7 @@ def judge_df_equal(df1: pandas.DataFrame, df2: pandas.DataFrame):
     for index, row in df1.iterrows():
         row2 = df2.loc[index]
         for index1 in range(len(row)):
-            if not (row[index1] == row2[index1] or abs(row[index1] - row2[index1] < 0.001)):
+            if not (row.iloc[index1] == row2.iloc[index1] or abs(row.iloc[index1] - row2.iloc[index1] < 0.001)):
                 return False
 
     return True
