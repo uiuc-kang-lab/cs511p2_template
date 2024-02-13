@@ -22,13 +22,20 @@ jobs:
       with:
         python-version: 3.8
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt  # If you have a requirements.txt file
+    - name: Install dependencies and start Ray
+      run: |
+        pip install -r requirements.txt
+        ray stop  # Ensure any previous instance of Ray is stopped
+        ray start --head --object-store-memory=5500000000
 
     - name: download the data
       run:  |
-        gdown https://drive.google.com/drive/u/1/folders/1SfJhSPCvUfHI2Vc_toVZIIzz1_50LpOx -O . --folder
-        gdown https://drive.google.com/drive/u/1/folders/10Rx3yLCJ5VTXuqJe_2ZuKzRiDSzlV3A0 -O . --folder
+        sudo apt-get update
+        sudo apt-get install git-lfs
+        git lfs install
+        git clone https://huggingface.co/datasets/tttjjj/cs511p2_data
+        mv cs511p2_data/correct_results.zip ./
+        mv cs511p2_data/tables.zip ./
         unzip tables.zip
         unzip correct_results.zip
 
